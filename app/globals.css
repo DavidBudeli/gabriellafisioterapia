@@ -1,0 +1,183 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "../vendor/shadcn-tailwind-4.13.0.css";
+
+@utility scrollbar-thin {
+  scrollbar-width: thin;
+}
+
+@utility scrollbar-none {
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+:root {
+  --background: #f7f2e9;
+  --foreground: #1d2822;
+  --card: #fffdf8;
+  --card-foreground: #1d2822;
+  --popover: #fffdf8;
+  --popover-foreground: #1d2822;
+  --primary: #123623;
+  --primary-foreground: #fffaf0;
+  --secondary: #dfe5d6;
+  --secondary-foreground: #123623;
+  --muted: #eee8dc;
+  --muted-foreground: #616b64;
+  --accent: #cda05a;
+  --accent-foreground: #123623;
+  --destructive: #a2332f;
+  --border: #ded3c1;
+  --input: #ded3c1;
+  --ring: #c19049;
+  --radius: 0.75rem;
+
+  --cream: #f7f2e9;
+  --cream-deep: #eee5d6;
+  --forest: #123623;
+  --forest-deep: #082719;
+  --forest-soft: #1f4a33;
+  --sage: #dfe5d6;
+  --olive: #6d7457;
+  --gold: #cda05a;
+  --gold-deep: #a97534;
+  --gold-light: #e9c88d;
+  --sand: #ded3c1;
+  --ink: #1d2822;
+  --ink-muted: #616b64;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-cream: var(--cream);
+  --color-cream-deep: var(--cream-deep);
+  --color-forest: var(--forest);
+  --color-forest-deep: var(--forest-deep);
+  --color-forest-soft: var(--forest-soft);
+  --color-sage: var(--sage);
+  --color-olive: var(--olive);
+  --color-gold: var(--gold);
+  --color-gold-deep: var(--gold-deep);
+  --color-gold-light: var(--gold-light);
+  --color-sand: var(--sand);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 6px);
+  --font-sans: "Aptos", "Segoe UI", Arial, sans-serif;
+  --font-serif: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  --shadow-soft: 0 24px 60px rgba(18, 54, 35, 0.1);
+}
+
+* {
+  border-color: var(--border);
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--forest-deep);
+}
+
+body {
+  overflow-x: clip;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--gold-light);
+  color: var(--forest-deep);
+}
+
+a,
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.hero-grid {
+  background-image:
+    linear-gradient(to right, rgba(18, 54, 35, 0.055) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(18, 54, 35, 0.055) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: linear-gradient(to bottom, black, transparent 86%);
+}
+
+.dark-grid {
+  background-image:
+    linear-gradient(to right, rgba(255, 250, 240, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 250, 240, 0.08) 1px, transparent 1px);
+  background-size: 84px 84px;
+}
+
+.reveal-up {
+  animation: reveal-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.reveal-delay-1 {
+  animation-delay: 0.08s;
+}
+
+.reveal-delay-2 {
+  animation-delay: 0.16s;
+}
+
+.reveal-delay-3 {
+  animation-delay: 0.24s;
+}
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 639px) {
+  .hero-grid {
+    background-size: 44px 44px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
