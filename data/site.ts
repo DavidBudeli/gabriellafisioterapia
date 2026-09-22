@@ -3,7 +3,9 @@ const whatsappMessage =
 
 export const siteConfig = {
   name: "Physis Therapeia",
-  professional: "Gabriella",
+  professional: "Gabriella Tsuruda Libano",
+  professionalFirstName: "Gabriella",
+  professionalRegistry: "CREFITO-8/351255-F",
   slogan: "Fisioterapia que te entende.",
   description:
     "Atendimento fisioterapêutico individualizado, com foco em compreender sua rotina, seu corpo e a origem do desconforto para definir uma abordagem adequada às suas necessidades.",
@@ -11,8 +13,8 @@ export const siteConfig = {
   phoneDisplay: "(41) 99693-5557",
   whatsappMessage,
   whatsappUrl: `https://wa.me/5541996935557?text=${encodeURIComponent(whatsappMessage)}`,
-  instagramHandle: "@physis_therapeia_",
-  instagramUrl: "https://instagram.com/physis_therapeia_",
+  instagramHandle: "@physistherapeia_",
+  instagramUrl: "https://instagram.com/physistherapeia_",
   // TODO: adicionar o domínio definitivo somente após o registro e a configuração de DNS.
   domain: "",
   previewUrl: "https://physis-therapeia.davidbudeli.chatgpt.site",

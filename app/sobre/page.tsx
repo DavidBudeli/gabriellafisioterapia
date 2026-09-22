@@ -3,6 +3,13 @@ import Image from "next/image";
 import { CTASection } from "@/components/sections/cta-section";
 import { Container } from "@/components/shared/container";
 import { PageHero } from "@/components/shared/page-hero";
+import { siteConfig } from "@/data/site";
+
+const complementaryTraining = [
+  { name: "Liberação miofascial", year: "2023" },
+  { name: "Bandagem funcional — Kinesiotape", year: "2021" },
+  { name: "Massagem pontual Sniper", year: "2026" },
+] as const;
 
 export const metadata: Metadata = {
   title: "Sobre",
@@ -31,7 +38,12 @@ export default function AboutPage() {
             />
           </div>
           <div>
-            <p className="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-olive">Gabriella</p>
+            <p className="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-olive">
+              {siteConfig.professional}
+            </p>
+            <p className="mt-3 text-sm font-medium tracking-[0.08em] text-gold-deep">
+              Fisioterapeuta · {siteConfig.professionalRegistry}
+            </p>
             <h2 className="mt-5 font-serif text-[clamp(2.6rem,5vw,4.8rem)] leading-[0.96] tracking-[-0.035em] text-forest">
               Um olhar atento ao contexto, não apenas ao sintoma.
             </h2>
@@ -43,6 +55,20 @@ export default function AboutPage() {
             <blockquote className="mt-9 border-l-2 border-gold pl-6 font-serif text-2xl italic leading-snug text-forest sm:text-3xl">
               “Fisioterapia que te entende.”
             </blockquote>
+
+            <div className="mt-10 border-t border-sand pt-8">
+              <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-olive">
+                Formações complementares
+              </h3>
+              <ul className="mt-5 grid gap-3 sm:grid-cols-3">
+                {complementaryTraining.map(({ name, year }) => (
+                  <li key={name} className="rounded-xl border border-sand bg-cream p-4">
+                    <span className="block text-sm font-semibold leading-5 text-forest">{name}</span>
+                    <span className="mt-2 block text-xs font-semibold tracking-[0.16em] text-gold-deep">{year}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </Container>
       </section>
