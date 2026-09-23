@@ -134,31 +134,53 @@ button {
   background-size: 84px 84px;
 }
 
-.reveal-up {
-  animation: reveal-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+/* Content starts visible. GSAP owns transient styles only after hydration. */
+.motion-text-mask {
+  display: block;
+  overflow: clip;
+  padding: 0.16em 0.06em;
+  margin: -0.16em -0.06em;
 }
-
-.reveal-delay-1 {
-  animation-delay: 0.08s;
+.motion-text-inner { display: block; }
+[data-magnetic] > a,
+[data-magnetic] > button {
+  /* GSAP owns transform; CSS transitions must not lag behind each tween frame. */
+  transition-property: background-color, color, border-color, box-shadow;
 }
-
-.reveal-delay-2 {
-  animation-delay: 0.16s;
+.site-header {
+  background: rgb(247 242 233 / 80%);
+  backdrop-filter: blur(8px);
+  transition: background-color 300ms ease, border-color 300ms ease, box-shadow 300ms ease;
 }
-
-.reveal-delay-3 {
-  animation-delay: 0.24s;
+.site-header[data-scrolled] {
+  background: rgb(247 242 233 / 96%);
+  border-color: rgb(222 211 193 / 80%);
+  box-shadow: 0 10px 30px rgb(18 54 35 / 5%);
 }
-
-@keyframes reveal-up {
-  from {
-    opacity: 0;
-    transform: translateY(18px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.nav-link { position: relative; }
+.nav-link::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 -7px;
+  height: 1px;
+  background: var(--gold-deep);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 250ms ease;
+}
+.nav-link:focus-visible::after { transform: scaleX(1); }
+.service-card { transition: translate 300ms ease, background-color 300ms ease, border-color 300ms ease; }
+.service-card > div:first-child > span:first-child,
+.service-card a > svg,
+a[data-slot="button"] > svg {
+  transition: transform 250ms ease, background-color 250ms ease, color 250ms ease;
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .nav-link:hover::after { transform: scaleX(1); }
+  .service-card:hover { translate: 0 -4px; border-color: var(--gold); background-color: rgb(247 242 233 / 60%); }
+  .service-card:hover > div:first-child > span:first-child { transform: scale(1.03); }
+  .service-card:hover a > svg,
+  a[data-slot="button"]:hover > svg { transform: translateX(3px); }
 }
 
 @media (max-width: 639px) {
@@ -168,6 +190,9 @@ button {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .motion-text-mask { overflow: visible; }
+  [data-parallax], [data-float], [data-scroll-line], [data-magnetic] > a { transform: none !important; }
+  .service-card { translate: none !important; }
   html {
     scroll-behavior: auto;
   }

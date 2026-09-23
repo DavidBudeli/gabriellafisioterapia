@@ -1,11 +1,13 @@
 import { Container } from "@/components/shared/container";
 import { SectionHeading } from "@/components/shared/section-heading";
+import { MotionSection } from "@/components/motion/motion-section";
+import { BrandSignature, StaggerReveal } from "@/components/motion/elements";
 
 const flow = ["Conversa", "Avaliação", "Compreensão", "Abordagem", "Orientação"];
 
 export function DifferentialSection() {
   return (
-    <section className="relative overflow-hidden bg-forest-deep py-20 sm:py-28 lg:py-36">
+    <MotionSection className="relative overflow-hidden bg-forest-deep py-20 sm:py-28 lg:py-36">
       <div className="dark-grid pointer-events-none absolute inset-0 opacity-25" aria-hidden="true" />
       <Container className="relative">
         <div className="grid gap-12 lg:grid-cols-[1fr_0.8fr] lg:items-end lg:gap-20">
@@ -19,7 +21,9 @@ export function DifferentialSection() {
           </p>
         </div>
 
-        <ol className="mt-14 grid border-t border-cream/15 sm:mt-20 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="relative mt-14 sm:mt-20">
+        <BrandSignature className="absolute left-0 top-0 w-full bg-gold/65" />
+        <StaggerReveal as="ol" progress className="grid border-t border-cream/15 sm:grid-cols-2 lg:grid-cols-5">
           {flow.map((step, index) => (
             <li
               key={step}
@@ -31,12 +35,12 @@ export function DifferentialSection() {
               <p className="mt-7 font-serif text-2xl text-cream transition-transform duration-300 group-hover:translate-x-1">
                 {step}
               </p>
-              <span className="absolute bottom-0 left-0 h-px w-0 bg-gold transition-all duration-500 group-hover:w-full" aria-hidden="true" />
+              <span className="absolute bottom-0 left-0 h-px w-full origin-left scale-x-0 bg-gold transition-transform duration-300 group-hover:scale-x-100" aria-hidden="true" />
             </li>
           ))}
-        </ol>
+        </StaggerReveal>
+        </div>
       </Container>
-    </section>
+    </MotionSection>
   );
 }
-

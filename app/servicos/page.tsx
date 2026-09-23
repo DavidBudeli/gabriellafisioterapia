@@ -4,6 +4,8 @@ import { Container } from "@/components/shared/container";
 import { PageHero } from "@/components/shared/page-hero";
 import { ServiceCard } from "@/components/shared/service-card";
 import { services } from "@/data/services";
+import { MotionSection } from "@/components/motion/motion-section";
+import { Reveal, StaggerReveal } from "@/components/motion/elements";
 
 export const metadata: Metadata = {
   title: "Serviços",
@@ -19,20 +21,20 @@ export default function ServicesPage() {
         title="Abordagens escolhidas para cada necessidade."
         description="A Physis Therapeia não trabalha com técnicas automáticas. A escolha de cada recurso começa pela compreensão do seu contexto, da sua rotina e do que o corpo apresenta."
       />
-      <section className="bg-white py-16 sm:py-24 lg:py-28">
+      <MotionSection className="bg-white py-16 sm:py-24 lg:py-28">
         <Container>
-          <div className="grid gap-x-7 sm:grid-cols-2 lg:grid-cols-4">
+          <StaggerReveal className="grid gap-x-7 sm:grid-cols-2 lg:grid-cols-4">
             {services.map((service, index) => (
               <ServiceCard key={service.slug} service={service} index={index} />
             ))}
-          </div>
-          <div className="mt-16 max-w-3xl border-l-2 border-gold pl-6 sm:mt-20 sm:pl-8">
+          </StaggerReveal>
+          <Reveal className="mt-16 max-w-3xl border-l-2 border-gold pl-6 sm:mt-20 sm:pl-8">
             <p className="font-serif text-2xl leading-snug text-forest sm:text-3xl">
               A lista de serviços não substitui a avaliação. Em alguns casos, a melhor orientação pode ser diferente da técnica inicialmente imaginada.
             </p>
-          </div>
+          </Reveal>
         </Container>
-      </section>
+      </MotionSection>
       <CTASection />
     </main>
   );

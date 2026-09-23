@@ -1,6 +1,8 @@
 import { ClipboardList, Compass, MessageSquareText, Search } from "lucide-react";
 import { Container } from "@/components/shared/container";
 import { SectionHeading } from "@/components/shared/section-heading";
+import { MotionSection } from "@/components/motion/motion-section";
+import { StaggerReveal } from "@/components/motion/elements";
 
 const steps = [
   {
@@ -27,7 +29,7 @@ const steps = [
 
 export function ProcessSection() {
   return (
-    <section id="como-funciona" className="scroll-mt-24 bg-white py-20 sm:py-28 lg:py-36">
+    <MotionSection id="como-funciona" className="scroll-mt-24 bg-white py-20 sm:py-28 lg:py-36">
       <Container>
         <div className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:gap-24">
           <SectionHeading
@@ -35,7 +37,7 @@ export function ProcessSection() {
             title="Cada atendimento começa com uma conversa."
             description="Entender o contexto vem antes de escolher a técnica. Esse cuidado orienta todo o atendimento."
           />
-          <ol className="grid gap-px overflow-hidden rounded-xl border border-sand bg-sand sm:grid-cols-2">
+          <StaggerReveal as="ol" progress className="grid gap-px overflow-hidden rounded-xl border border-sand bg-sand sm:grid-cols-2">
             {steps.map(({ title, description, icon: Icon }, index) => (
               <li key={title} className="group relative min-h-[250px] bg-cream/95 p-7 sm:p-8">
                 <div className="flex items-center justify-between">
@@ -48,13 +50,12 @@ export function ProcessSection() {
                 </div>
                 <h3 className="mt-10 font-serif text-2xl leading-tight text-forest">{title}</h3>
                 <p className="mt-4 text-sm leading-6 text-ink-muted">{description}</p>
-                <span className="absolute inset-x-0 bottom-0 h-1 origin-left scale-x-0 bg-gold transition-transform duration-500 group-hover:scale-x-100" aria-hidden="true" />
+                <span data-step-line className="absolute inset-x-0 bottom-0 h-px origin-left bg-gold/70" aria-hidden="true" />
               </li>
             ))}
-          </ol>
+          </StaggerReveal>
         </div>
       </Container>
-    </section>
+    </MotionSection>
   );
 }
-

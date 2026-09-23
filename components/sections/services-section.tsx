@@ -4,10 +4,12 @@ import { services } from "@/data/services";
 import { Container } from "@/components/shared/container";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { ServiceCard } from "@/components/shared/service-card";
+import { MotionSection } from "@/components/motion/motion-section";
+import { StaggerReveal } from "@/components/motion/elements";
 
 export function ServicesSection() {
   return (
-    <section id="servicos" className="scroll-mt-24 bg-cream py-20 sm:py-28 lg:py-36">
+    <MotionSection id="servicos" className="scroll-mt-24 bg-cream py-20 sm:py-28 lg:py-36">
       <Container>
         <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
           <SectionHeading
@@ -24,13 +26,12 @@ export function ServicesSection() {
           </Link>
         </div>
 
-        <div className="mt-12 grid gap-x-7 sm:mt-16 sm:grid-cols-2 xl:grid-cols-4">
+        <StaggerReveal className="mt-12 grid gap-x-7 sm:mt-16 sm:grid-cols-2 xl:grid-cols-4">
           {services.map((service, index) => (
             <ServiceCard key={service.slug} service={service} index={index} />
           ))}
-        </div>
+        </StaggerReveal>
       </Container>
-    </section>
+    </MotionSection>
   );
 }
-

@@ -51,6 +51,13 @@ export default defineConfig(async () => {
   const { cloudflare } = await import("@cloudflare/vite-plugin");
 
   return {
+    // The icons are shared by server and client components. Keep their client
+    // boundaries intact instead of mixing optimized and direct module copies.
+    optimizeDeps: { exclude: ["lucide-react"] },
+    environments: {
+      rsc: { optimizeDeps: { exclude: ["lucide-react"] } },
+      ssr: { optimizeDeps: { exclude: ["lucide-react"] } },
+    },
     server: {
       ...(managedLinux ? { host: "0.0.0.0", allowedHosts: ["terminal.local"] } : {}),
       ...(isCodexSeatbeltSandbox ? { watch: { useFsEvents: false, usePolling: true } } : {}),

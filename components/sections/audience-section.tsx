@@ -1,6 +1,8 @@
 import { BriefcaseBusiness, Dumbbell, History, Laptop, PersonStanding, Repeat2 } from "lucide-react";
 import { Container } from "@/components/shared/container";
 import { SectionHeading } from "@/components/shared/section-heading";
+import { MotionSection } from "@/components/motion/motion-section";
+import { StaggerReveal } from "@/components/motion/elements";
 
 const profiles = [
   { label: "Quem trabalha sentado ou no computador", icon: Laptop },
@@ -13,7 +15,7 @@ const profiles = [
 
 export function AudienceSection() {
   return (
-    <section className="border-y border-sand bg-sage/25 py-20 sm:py-28 lg:py-32">
+    <MotionSection className="border-y border-sand bg-sage/25 py-20 sm:py-28 lg:py-32">
       <Container>
         <SectionHeading
           eyebrow="Para diferentes rotinas"
@@ -22,7 +24,7 @@ export function AudienceSection() {
           align="center"
           className="max-w-3xl"
         />
-        <div className="mx-auto mt-12 grid max-w-5xl gap-3 sm:mt-16 sm:grid-cols-2 lg:grid-cols-3">
+        <StaggerReveal alternate className="mx-auto mt-12 grid max-w-5xl gap-3 sm:mt-16 sm:grid-cols-2 lg:grid-cols-3">
           {profiles.map(({ label, icon: Icon }) => (
             <div
               key={label}
@@ -32,9 +34,8 @@ export function AudienceSection() {
               <p className="text-sm font-medium leading-6 text-forest">{label}</p>
             </div>
           ))}
-        </div>
+        </StaggerReveal>
       </Container>
-    </section>
+    </MotionSection>
   );
 }
-

@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
 import { WhatsAppButton } from "@/components/layout/whatsapp-button";
+import { MotionRefresh } from "@/components/motion/motion-refresh";
 import { siteConfig, siteUrl } from "@/data/site";
 import "./globals.css";
 
@@ -77,6 +78,7 @@ export default function RootLayout({
         <div id="conteudo-principal">{children}</div>
         <Footer />
         <WhatsAppButton />
+        <MotionRefresh />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

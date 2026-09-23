@@ -2,6 +2,8 @@ import { Camera, MessageCircle } from "lucide-react";
 import { siteConfig } from "@/data/site";
 import { Container } from "@/components/shared/container";
 import { SectionHeading } from "@/components/shared/section-heading";
+import { MotionSection } from "@/components/motion/motion-section";
+import { StaggerReveal } from "@/components/motion/elements";
 
 const contacts = [
   {
@@ -20,14 +22,14 @@ const contacts = [
 
 export function ContactSection() {
   return (
-    <section id="contato" className="scroll-mt-24 bg-white py-20 sm:py-28 lg:py-32">
+    <MotionSection id="contato" className="scroll-mt-24 bg-white py-20 sm:py-28 lg:py-32">
       <Container className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
         <SectionHeading
           eyebrow="Contato"
           title="Converse diretamente com a Physis."
           description="Se você quer entender melhor como funciona o atendimento, fale com a Gabriella pelos canais oficiais."
         />
-        <div className="grid gap-4 sm:grid-cols-2">
+        <StaggerReveal className="grid gap-4 sm:grid-cols-2">
           {contacts.map(({ label, value, href, icon: Icon }) => (
             <a
               key={label}
@@ -45,8 +47,8 @@ export function ContactSection() {
               </span>
             </a>
           ))}
-        </div>
+        </StaggerReveal>
       </Container>
-    </section>
+    </MotionSection>
   );
 }

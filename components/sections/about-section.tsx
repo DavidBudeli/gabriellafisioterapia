@@ -3,13 +3,16 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { Container } from "@/components/shared/container";
 import { SectionHeading } from "@/components/shared/section-heading";
+import { MotionSection } from "@/components/motion/motion-section";
+import { ImageReveal, ParallaxImage, Reveal } from "@/components/motion/elements";
 
 export function AboutSection() {
   return (
-    <section id="sobre" className="scroll-mt-24 bg-white py-20 sm:py-28 lg:py-36">
+    <MotionSection id="sobre" className="scroll-mt-24 bg-white py-20 sm:py-28 lg:py-36">
       <Container className="grid items-center gap-14 lg:grid-cols-[0.85fr_1fr] lg:gap-24">
         <div className="relative mx-auto w-full max-w-[520px] lg:mx-0">
-          <div className="relative aspect-[5/6] overflow-hidden rounded-[1.25rem] bg-forest-deep shadow-soft">
+          <ImageReveal className="relative aspect-[5/6] rounded-[1.25rem] bg-forest-deep shadow-soft">
+            <ParallaxImage>
             <Image
               src="/images/brand/physis-symbol.jpg"
               alt="Ilustração anatômica da identidade Physis Therapeia"
@@ -17,10 +20,11 @@ export function AboutSection() {
               sizes="(max-width: 1023px) 92vw, 40vw"
               className="object-cover"
             />
-          </div>
-          <blockquote className="absolute -bottom-7 right-0 max-w-[82%] rounded-l-xl border-l-4 border-gold bg-cream px-6 py-5 font-serif text-xl leading-tight text-forest shadow-soft sm:-right-7 sm:max-w-[76%] sm:text-2xl">
+            </ParallaxImage>
+          </ImageReveal>
+          <Reveal as="blockquote" delay={0.2} className="absolute -bottom-7 right-0 max-w-[82%] rounded-l-xl border-l-4 border-gold bg-cream px-6 py-5 font-serif text-xl leading-tight text-forest shadow-soft sm:-right-7 sm:max-w-[76%] sm:text-2xl">
             “Tratar começa por entender.”
-          </blockquote>
+          </Reveal>
         </div>
 
         <div className="pt-6 lg:pt-0">
@@ -46,7 +50,6 @@ export function AboutSection() {
           </Link>
         </div>
       </Container>
-    </section>
+    </MotionSection>
   );
 }
-

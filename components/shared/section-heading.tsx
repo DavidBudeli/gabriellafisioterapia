@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { MotionSequence, Reveal, TextReveal } from "@/components/motion/elements";
 
 type SectionHeadingProps = {
   eyebrow?: string;
@@ -18,7 +19,7 @@ export function SectionHeading({
   className,
 }: SectionHeadingProps) {
   return (
-    <div
+    <MotionSequence
       className={cn(
         "max-w-2xl",
         align === "center" && "mx-auto text-center",
@@ -26,34 +27,33 @@ export function SectionHeading({
       )}
     >
       {eyebrow ? (
-        <p
+        <Reveal as="p"
           className={cn(
             "mb-4 text-[0.72rem] font-semibold uppercase tracking-[0.24em]",
             theme === "dark" ? "text-gold-light" : "text-olive",
           )}
         >
           {eyebrow}
-        </p>
+        </Reveal>
       ) : null}
-      <h2
+      <TextReveal
         className={cn(
           "font-serif text-[clamp(2.25rem,5vw,4.4rem)] leading-[0.98] tracking-[-0.035em] text-balance",
           theme === "dark" ? "text-cream" : "text-forest",
         )}
       >
         {title}
-      </h2>
+      </TextReveal>
       {description ? (
-        <p
+        <Reveal as="p"
           className={cn(
             "mt-6 text-base leading-7 sm:text-lg sm:leading-8",
             theme === "dark" ? "text-cream/72" : "text-ink-muted",
           )}
         >
           {description}
-        </p>
+        </Reveal>
       ) : null}
-    </div>
+    </MotionSequence>
   );
 }
-
