@@ -1,6 +1,6 @@
 # Physis Therapeia
 
-Site institucional da Physis Therapeia, desenvolvido com Next.js, React, TypeScript e Tailwind CSS.
+Site institucional da Physis Therapeia, desenvolvido com Vinext (compatível com App Router), React, TypeScript e Tailwind CSS.
 
 ## Como executar
 
@@ -72,7 +72,35 @@ O projeto também inclui sitemap, robots, metadata social, dados estruturados, p
 
 ```bash
 npm run build
-npm run start
+npm start
 ```
+
+O build usa `vinext build` e gera o servidor Node em `dist/standalone/server.js`,
+ativado por `output: "standalone"` no arquivo de compatibilidade `next.config.ts`.
+O comando `npm start` executa esse servidor diretamente, sem Next CLI ou Wrangler.
+
+### Hostinger (Node.js)
+
+- Use Node.js 22.13 ou superior.
+- Instalação: `npm ci --include=dev` (Vinext e Vite são necessários no build).
+- Build: `npm run build`.
+- Inicialização: `npm start`.
+- Mantenha toda a pasta `dist/standalone/` no artefato de produção, não só `server.js`.
+- O servidor lê `process.env.PORT`; se não estiver definida, usa `3000`.
+  O host padrão é `0.0.0.0`, configurável por `HOST`.
+
+Teste de porta personalizada no PowerShell:
+
+```powershell
+$env:PORT = "4317"
+npm start
+```
+
+Em Linux: `PORT=4317 npm start`.
+
+O build padrão é Node standalone. O adaptador Cloudflare fica restrito aos previews
+de desenvolvimento e ao perfil local `managed-linux` do Sites. O wrapper
+`scripts/run-framework.mjs` é apenas compatibilidade para lançadores antigos e
+delega ao Vinext, sem procurar saídas `.next/standalone` ou `out/`.
 
 Antes de publicar em um domínio próprio, revise `domain` em `data/site.ts` e confirme as informações profissionais que ainda serão fornecidas, como endereço, horários e registro profissional.

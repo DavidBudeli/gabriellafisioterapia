@@ -1,7 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // Vinext reads this compatibility config and emits dist/standalone/server.js.
+  output: "standalone",
 };
 
 export default nextConfig;
