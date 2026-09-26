@@ -1,6 +1,6 @@
 # Physis Therapeia
 
-Site institucional da Physis Therapeia, desenvolvido com Vinext (compatível com App Router), React, TypeScript e Tailwind CSS.
+Site institucional da Physis Therapeia, desenvolvido com Next.js nativo (App Router), React, TypeScript e Tailwind CSS.
 
 ## Como executar
 
@@ -75,19 +75,30 @@ npm run build
 npm start
 ```
 
-O build usa `vinext build` e gera o servidor Node em `dist/standalone/server.js`,
-ativado por `output: "standalone"` no arquivo de compatibilidade `next.config.ts`.
-O comando `npm start` executa esse servidor diretamente, sem Next CLI ou Wrangler.
+O script `build` chama diretamente `next build`. A opção `output: "standalone"`
+em `next.config.ts` faz o Next.js gerar `.next/standalone/server.js`.
+O `postbuild` apenas copia `public/` e `.next/static/` para o standalone real,
+conforme a [documentação oficial](https://nextjs.org/docs/app/api-reference/config/next-config-js/output),
+para que imagens, CSS e JavaScript sejam servidos junto com a aplicação.
+Ele falha se o servidor gerado pelo Next.js não existir; não cria um servidor alternativo.
+
+`npm start` executa `next start`, usando o build completo na raiz do projeto.
+Com `output: "standalone"`, o Next.js pode emitir um aviso recomendando o servidor
+standalone. Para o artefato de deploy, execute `node .next/standalone/server.js`.
 
 ### Hostinger (Node.js)
 
 - Use Node.js 22.13 ou superior.
-- Instalação: `npm ci --include=dev` (Vinext e Vite são necessários no build).
+- Framework: Next.js.
+- Instalação: `npm install` ou `npm run install:ci` para usar o lockfile sem alterações.
+- Instale também as dependências de desenvolvimento na etapa de build.
 - Build: `npm run build`.
-- Inicialização: `npm start`.
-- Mantenha toda a pasta `dist/standalone/` no artefato de produção, não só `server.js`.
+- Saída detectada: `.next/standalone/server.js`.
+- Inicialização do standalone: `node .next/standalone/server.js`.
+- Se o painel usar o projeto completo, `npm start` também está disponível.
+- Mantenha toda a pasta `.next/standalone/` no artefato de produção, não só `server.js`.
 - O servidor lê `process.env.PORT`; se não estiver definida, usa `3000`.
-  O host padrão é `0.0.0.0`, configurável por `HOST`.
+  Para o standalone, defina `HOSTNAME=0.0.0.0` para escutar em todas as interfaces.
 
 Teste de porta personalizada no PowerShell:
 
@@ -98,9 +109,16 @@ npm start
 
 Em Linux: `PORT=4317 npm start`.
 
-O build padrão é Node standalone. O adaptador Cloudflare fica restrito aos previews
-de desenvolvimento e ao perfil local `managed-linux` do Sites. O wrapper
-`scripts/run-framework.mjs` é apenas compatibilidade para lançadores antigos e
-delega ao Vinext, sem procurar saídas `.next/standalone` ou `out/`.
+Teste direto do standalone no PowerShell:
+
+```powershell
+$env:PORT = "4318"
+$env:HOSTNAME = "0.0.0.0"
+node .next/standalone/server.js
+```
+
+Em Linux: `PORT=4318 HOSTNAME=0.0.0.0 node .next/standalone/server.js`.
+Nenhuma porta de produção é fixada no código. O projeto não usa mais Vinext,
+Vite, Wrangler ou Cloudflare Workers para desenvolvimento, build ou produção.
 
 Antes de publicar em um domínio próprio, revise `domain` em `data/site.ts` e confirme as informações profissionais que ainda serão fornecidas, como endereço, horários e registro profissional.
