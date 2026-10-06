@@ -9,10 +9,10 @@ export const siteConfig = {
   slogan: "Fisioterapia que te entende.",
   description:
     "Atendimento fisioterapêutico individualizado, com foco em compreender sua rotina, seu corpo e a origem do desconforto para definir uma abordagem adequada às suas necessidades.",
-  phone: "5541996935557",
-  phoneDisplay: "(41) 99693-5557",
+  phone: "5541987807780",
+  phoneDisplay: "(41) 98780-7780",
   whatsappMessage,
-  whatsappUrl: `https://wa.me/5541996935557?text=${encodeURIComponent(whatsappMessage)}`,
+  whatsappUrl: `https://wa.me/5541987807780?text=${encodeURIComponent(whatsappMessage)}`,
   instagramHandle: "@physistherapeia_",
   instagramUrl: "https://instagram.com/physistherapeia_",
   // TODO: adicionar o domínio definitivo somente após o registro e a configuração de DNS.
